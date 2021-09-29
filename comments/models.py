@@ -4,7 +4,7 @@ from listings.models import Listing
 
 class Comment(models.Model):
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    listingId = models.ForeignKey(Listing, on_delete=models.CASCADE)
     content = models.TextField(max_length=100, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(auto_now=True)
