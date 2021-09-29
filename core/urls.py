@@ -7,4 +7,5 @@ urlpatterns = [
     path('auth/', obtain_auth_token),
     path('users/', include('profiles.urls')),
     path('listings/', include('listings.urls')),
+    path('comments/', include('comments.urls')),
 ]
