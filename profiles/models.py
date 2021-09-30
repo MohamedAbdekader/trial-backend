@@ -35,14 +35,9 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 
 
 class Profile(AbstractUser):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=20, unique=True, db_index=True, primary_key=True)
     watchlist = models.JSONField(default=dict, blank=True, null=True)
     profile_img = models.ImageField()
-    # is_staff = models.BooleanField(default=False)
-    # is_active = models.BooleanField(default=False)
-    
-    # objects = CustomAccountManager()
 
     USERNAME_FIELD = 'username'
 
