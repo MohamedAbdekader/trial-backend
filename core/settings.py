@@ -135,7 +135,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3001']
 
 AUTH_USER_MODEL = "profiles.Profile"
 
