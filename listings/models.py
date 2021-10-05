@@ -1,5 +1,5 @@
 from django.db import models
-from profiles.models import Profile
+from django.conf import settings
 
 class Listing(models.Model):
     title = models.CharField(max_length=25)
@@ -9,7 +9,7 @@ class Listing(models.Model):
     image2 = models.ImageField(blank=True)
     image3 = models.ImageField(blank=True)
     image4 = models.ImageField(blank=True)
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     creator_img = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     likers = models.JSONField(default=dict)
