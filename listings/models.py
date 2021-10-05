@@ -10,6 +10,7 @@ class Listing(models.Model):
     image3 = models.ImageField(blank=True)
     image4 = models.ImageField(blank=True)
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator_img = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     likers = models.JSONField(default=dict)
     tags = models.JSONField(default=dict)
