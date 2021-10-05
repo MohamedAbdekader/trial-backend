@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from core.listings.models import Listing
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.conf import settings
@@ -48,3 +49,10 @@ class Profile(AbstractUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def update_profile_img(sender, instance=None, created=False, **kwargs):
+    for listing in Listing.objects.get(creator=instance):
+        if listing.creator_img != Listing.profile_img:
+            listing.creator_img = Listing.profile_img
+            listing.save()
