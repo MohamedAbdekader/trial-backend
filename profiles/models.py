@@ -37,7 +37,7 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 class Profile(AbstractUser):
     username = models.CharField(max_length=20, unique=True, db_index=True, primary_key=True)
     watchlist = models.JSONField(default=dict, blank=True, null=True)
-    profile_img = models.ImageField()
+    profile_img = models.ImageField(blank=True, null=True)
 
     USERNAME_FIELD = 'username'
 
