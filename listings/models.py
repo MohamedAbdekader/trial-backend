@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.db.models.fields.related import OneToOneField
 
 class Listing(models.Model):
@@ -22,3 +24,8 @@ class ListingLikeCount(models.Model):
         primary_key=True
     )
     like_count = models.IntegerField(default=0)
+
+@receiver(post_save, sender=Listing)
+def create_likecount(sender, instance=None, created=False, **kwargs):
+    if created:
+        ListingLikeCount.objects.create(listingId=instance)
