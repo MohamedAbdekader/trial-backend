@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.fields.related import OneToOneField
 
 class Listing(models.Model):
     title = models.CharField(max_length=25)
@@ -12,5 +13,12 @@ class Listing(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     creator_img = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    like_count = models.IntegerField(default=0)
     tags = models.JSONField(default={''})
+
+class ListingLikeCount(models.Model):
+    listingId = OneToOneField(
+        Listing,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    like_count = models.IntegerField(default=0)
