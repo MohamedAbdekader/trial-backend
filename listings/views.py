@@ -46,3 +46,7 @@ class ListingLike(generics.UpdateAPIView):
 class ListingLookup(generics.RetrieveAPIView):
     serializer_class = ListingSerializer
     queryset = Listing.objects.all()
+
+class ListingLikeLookup(generics.RetrieveAPIView):
+    serializer_class = ListingLikeCountSerializer
+    queryset = ListingLikeCount.objects.all()
