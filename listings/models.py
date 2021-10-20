@@ -13,7 +13,7 @@ class Listing(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     creator_img = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    tags = models.JSONField(default={''})
+    tags = models.JSONField(default=dict)
 
 class ListingLikeCount(models.Model):
     listingId = OneToOneField(

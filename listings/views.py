@@ -1,10 +1,10 @@
-from .serializers import ListingSerializer
-from .models import Listing
+from .serializers import ListingSerializer, ListingLikeCountSerializer
+from .models import Listing, ListingLikeCount
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import SAFE_METHODS, BasePermission, IsAuthenticated
 from rest_framework import generics
 
-class UserPermission(BasePermission):
+class CreatorPermission(BasePermission):
     message = 'Handling listings is restricted to the creator only.'
 
     def has_object_permission(self, request, view, obj):
@@ -15,27 +15,33 @@ class UserPermission(BasePermission):
         return obj.creator == request.user
 
 class ListingsAll(generics.ListAPIView):
-    queryset = Listing.objects.all()
     serializer_class = ListingSerializer
+    queryset = Listing.objects.all()
 
 class ListingCreate(generics.CreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    queryset = Listing.objects.all()
     serializer_class = ListingSerializer
+    queryset = Listing.objects.all()
 
 #Lookup field on object is default:pk
-class ListingDelete(generics.DestroyAPIView, UserPermission):
+class ListingDelete(generics.DestroyAPIView, CreatorPermission):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [UserPermission]
+    permission_classes = [CreatorPermission]
     serializer_class = ListingSerializer
     queryset = Listing.objects.all()
 
-class ListingUpdate(generics.UpdateAPIView, UserPermission):
+class ListingUpdate(generics.UpdateAPIView, CreatorPermission):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [UserPermission]
+    permission_classes = [CreatorPermission]
     serializer_class = ListingSerializer
     queryset = Listing.objects.all()
+
+class ListingLike(generics.UpdateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListingLikeCountSerializer
+    queryset = ListingLikeCount.objects.all()
 
 class ListingLookup(generics.RetrieveAPIView):
     serializer_class = ListingSerializer
