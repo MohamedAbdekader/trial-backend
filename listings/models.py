@@ -12,5 +12,5 @@ class Listing(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     creator_img = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    likers = models.JSONField(default=dict)
-    tags = models.JSONField(default=dict)
+    like_count = models.IntegerField(default=0)
+    tags = models.JSONField(default={''})

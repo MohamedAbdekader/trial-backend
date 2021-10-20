@@ -33,7 +33,6 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin, BaseUserM
 #         user.save()
 #         return user
 
-
 class Profile(AbstractUser):
     username = models.CharField(max_length=20, unique=True, db_index=True, primary_key=True)
     watchlist = models.JSONField(default=dict, blank=True, null=True)
@@ -49,9 +48,9 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def update_profile_img(sender, instance=None, created=False, **kwargs):
-    for listing in Listing.objects.get(creator=instance):
-        if listing.creator_img != Listing.profile_img:
-            listing.creator_img = Listing.profile_img
-            listing.save()
+# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+# def update_profile_img(sender, instance=None, created=False, **kwargs):
+#     for listing in Listing.objects.get(creator=instance):
+#         if listing.creator_img != Listing.profile_img:
+#             listing.creator_img = Listing.profile_img
+#             listing.save()
