@@ -6,6 +6,5 @@ urlpatterns = [
     path('delete/<pk>', ProfileDelete.as_view(), name="delete_user"),
     path('update/<pk>', ProfileUpdate.as_view(), name="update_user"),
     path('view/<pk>', ProfileView.as_view(), name="view_user"),
-    # path('example', ExampleView.as_view(), name="example"),
     path('', ProfileList.as_view(), name='list'),
 ]

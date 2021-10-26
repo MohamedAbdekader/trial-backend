@@ -57,7 +57,7 @@ class ProfileUpdate(generics.UpdateAPIView, UserPermission):
     authentication_classes = [TokenAuthentication]
     permission_classes = [UserPermission]
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()    
+    queryset = Profile.objects.all()  
 
 class ProfileView(generics.RetrieveAPIView):
     serializer_class = ProfileSerializer
