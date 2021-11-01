@@ -8,14 +8,14 @@ class Listing(models.Model):
     title = models.CharField(max_length=25)
     description = models.TextField(max_length=100)
     price = models.SmallIntegerField()
-    image1 = models.ImageField(blank=True)
-    image2 = models.ImageField(blank=True)
-    image3 = models.ImageField(blank=True)
-    image4 = models.ImageField(blank=True)
+    image1 = models.ImageField(blank=True, upload_to='media/')
+    image2 = models.ImageField(blank=True, upload_to='media/')
+    image3 = models.ImageField(blank=True, upload_to='media/')
+    image4 = models.ImageField(blank=True, upload_to='media/')
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    creator_img = models.ImageField(blank=True, null=True)
+    creator_img = models.CharField(blank=True, null=True, max_length=150)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    tags = models.JSONField(default=dict)
+    # tags = models.JSONField(default=dict)
 
 class ListingLikeCount(models.Model):
     listingId = OneToOneField(
