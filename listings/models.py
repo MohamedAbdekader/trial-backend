@@ -8,7 +8,7 @@ from django.db.models.fields.related import OneToOneField
 class Listing(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=25)
-    description = models.TextField(max_length=100)
+    description = models.TextField(max_length=250)
     price = models.SmallIntegerField()
     image1 = models.ImageField(blank=True, upload_to='media/')
     image2 = models.ImageField(blank=True, upload_to='media/')
