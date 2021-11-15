@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 # from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseBadRequest
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from .models import Profile
@@ -45,7 +46,7 @@ class ProfileCreate(APIView):
             if user:
                 json = serializer.data
                 return Response(json)
-        return Response(serializer.errors)
+        return HttpResponseBadRequest(serializer.errors)
     
 class ProfileDelete(generics.DestroyAPIView, UserPermission):
     authentication_classes = [TokenAuthentication]
