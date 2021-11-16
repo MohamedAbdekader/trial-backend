@@ -13,7 +13,6 @@ class Listing(models.Model):
     image1 = models.ImageField(blank=True, upload_to='media/')
     image2 = models.ImageField(blank=True, upload_to='media/')
     image3 = models.ImageField(blank=True, upload_to='media/')
-    image4 = models.ImageField(blank=True, upload_to='media/')
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     creator_img = models.CharField(blank=True, null=True, max_length=500)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
