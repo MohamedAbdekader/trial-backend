@@ -37,7 +37,7 @@ class Profile(AbstractUser):
     username = models.CharField(max_length=20, unique=True, db_index=True, primary_key=True)
     listings_created = models.JSONField(default=[], blank=True, null=True)
     watchlist = models.JSONField(default=[], blank=True, null=True)
-    profile_img = models.ImageField(upload_to='media/', default='media/defaultprofileimg.svg')
+    profile_img = models.ImageField(blank=True, upload_to='media/', default='media/defaultprofileimg.svg')
 
     USERNAME_FIELD = 'username'
 

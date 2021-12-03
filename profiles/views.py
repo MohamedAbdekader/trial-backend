@@ -4,6 +4,7 @@ from rest_framework.authentication import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest
 from rest_framework import generics
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import AllowAny
 from .models import Profile
 from .serializers import ProfileSerializer
@@ -38,6 +39,7 @@ class ProfileList(generics.ListAPIView):
 
 class ProfileCreate(APIView):
     permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format='json'):
         serializer = ProfileSerializer(data=request.data)
