@@ -1,8 +1,8 @@
 from django.db import models
+import uuid
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-import uuid
 from django.db.models.fields.related import OneToOneField
 
 class Listing(models.Model):
