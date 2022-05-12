@@ -136,7 +136,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = 'https://lime-market.web.app',
+CORS_ORIGIN_WHITELIST = ['https://lime-market.web.app', 'http://localhost:8080']
 
 AUTH_USER_MODEL = "profiles.Profile"
 
